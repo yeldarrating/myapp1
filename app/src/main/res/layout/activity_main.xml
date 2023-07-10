@@ -53,7 +53,8 @@
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/container_bottom"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/rounded_corners"
             app:behavior_peekHeight="60dp"
             app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior" />
 

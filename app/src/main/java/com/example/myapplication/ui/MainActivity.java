@@ -1,10 +1,12 @@
-package com.example.myapplication;
+package com.example.myapplication.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentContainerView;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.Manifest;
 import android.content.Intent;
@@ -21,19 +23,29 @@ import android.widget.Toast;
 import com.budiyev.android.codescanner.CodeScanner;
 import com.budiyev.android.codescanner.CodeScannerView;
 import com.budiyev.android.codescanner.DecodeCallback;
+import com.example.myapplication.R;
+import com.example.myapplication.view.GalleryFragment;
+import com.example.myapplication.view.HistoryFragment;
+import com.example.myapplication.view.ProductFragment;
+import com.example.myapplication.viewmodel.CurrentProductViewModel;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.zxing.Result;
 
 public class MainActivity extends AppCompatActivity {
     private CodeScanner codeScanner;
     private HistoryFragment historyFragment;
-    private BlankFragment blankFragment;
+    private ProductFragment productFragment;
+    private GalleryFragment galleryFragment;
     private BottomSheetBehavior<View> bottomSheetBehavior;
     private View bottomSheetView;
 
-    private Button galleryBtn;
+    private Button galleryButton;
 
     private Button historyButton;
+
+    private FragmentContainerView FCV;
+
+    private CurrentProductViewModel currentProductViewModel;
 
     private static final int CAMERA_PERMISSION_REQUEST_CODE = 100;
     private static final int REQUEST_CAMERA_PERMISSION_SETTING = 101;
@@ -42,6 +54,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        historyButton = findViewById(R.id.history_button);
+        galleryButton = findViewById(R.id.gallery_button);
+
+        FCV = findViewById(R.id.container_bottom);
+
+        currentProductViewModel = new ViewModelProvider(this).get(CurrentProductViewModel.class);
 
         // Check and request camera permission
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
@@ -78,19 +97,24 @@ public class MainActivity extends AppCompatActivity {
             public void onSlide(@NonNull View bottomSheet, float slideOffset) {
                 if (slideOffset > 0.7f && bottomSheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED) {
                     bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                    FCV.setBackgroundColor(getColor(android.R.color.white));
                 } else if (slideOffset > 0.2f && slideOffset <= 0.7f && bottomSheetBehavior.getState() != BottomSheetBehavior.STATE_HALF_EXPANDED) {
                     bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HALF_EXPANDED);
+                    FCV.setBackground(getDrawable(R.drawable.rounded_corners));
+                } else if (slideOffset <= 0.2f && bottomSheetBehavior.getState() != BottomSheetBehavior.STATE_COLLAPSED) {
+                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                    FCV.setBackground(getDrawable(R.drawable.rounded_corners));
                 } else {
                     bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                    FCV.setBackground(getDrawable(R.drawable.rounded_corners));
                 }
             }
         });
 
-        historyButton = findViewById(R.id.history_button);
         historyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                blankFragment = new BlankFragment();
+                historyFragment = new HistoryFragment();
 
                 if (bottomSheetView.getVisibility() != View.VISIBLE) {
                     bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
@@ -98,11 +122,26 @@ public class MainActivity extends AppCompatActivity {
 
                 bottomSheetView.setVisibility(View.VISIBLE);
                 FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.container_bottom, blankFragment);
-                ft.commit();
+                ft.replace(R.id.container_bottom, historyFragment);
+                ft.commitAllowingStateLoss();
             }
         });
 
+        galleryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                galleryFragment = new GalleryFragment();
+
+                if (bottomSheetView.getVisibility() != View.VISIBLE) {
+                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                }
+
+                bottomSheetView.setVisibility(View.VISIBLE);
+                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.container_bottom, galleryFragment);
+                ft.commitAllowingStateLoss();
+            }
+        });
     }
 
     private void initializeCodeScanner() {
@@ -116,7 +155,12 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         Log.d("TAG", "run: " + result.getText());
-                        historyFragment = HistoryFragment.newInstance(result.getText().toString());
+
+                        Toast.makeText(MainActivity.this, result.getText(), Toast.LENGTH_SHORT).show();
+
+                        currentProductViewModel.setCurrentProductCode(result.getText());
+                        productFragment = new ProductFragment();
+
 
                         if (bottomSheetView.getVisibility() != View.VISIBLE) {
                             bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
@@ -124,8 +168,8 @@ public class MainActivity extends AppCompatActivity {
 
                         bottomSheetView.setVisibility(View.VISIBLE);
                         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                        ft.replace(R.id.container_bottom, historyFragment);
-                        ft.commit();
+                        ft.replace(R.id.container_bottom, productFragment);
+                        ft.commitAllowingStateLoss();
                     }
                 });
             }

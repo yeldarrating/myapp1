@@ -26,7 +26,7 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:text="@string/fragment_history_text"
+            android:text="@string/fragment_gallery_text"
             android:layout_weight="1"/>
 
         <ImageView
@@ -36,5 +36,16 @@
             android:layout_gravity="center"
             android:src="@drawable/close_btn"/>
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/res"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+
 
 </LinearLayout>
