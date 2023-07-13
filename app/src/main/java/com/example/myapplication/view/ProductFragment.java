@@ -14,17 +14,19 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.myapplication.R;
+import com.example.myapplication.db.Product;
 import com.example.myapplication.model.Item;
 import com.example.myapplication.ui.MainActivity;
 import com.example.myapplication.viewmodel.CurrentProductViewModel;
 import com.example.myapplication.viewmodel.DataArrayViewModel;
+import com.example.myapplication.viewmodel.ProductArrayViewModel;
 
 public class ProductFragment extends Fragment {
     private TextView resultTextView;
     private ImageView closeButton;
     private MainActivity mainActivity;
     private CurrentProductViewModel currentProductViewModel;
-    private DataArrayViewModel dataArrayViewModel;
+    private ProductArrayViewModel productArrayViewModel;
 
     public ProductFragment() {
         // Required empty public constructor
@@ -39,14 +41,23 @@ public class ProductFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_product, container, false);
 
-        currentProductViewModel.getCurrentProductCode().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(String currentProductCode) {
+        try {
+        productArrayViewModel = new ViewModelProvider(this).get(ProductArrayViewModel.class);
+        currentProductViewModel = new ViewModelProvider(this).get(CurrentProductViewModel.class);
 
-                Log.d("TAG", "onChanged: " + currentProductCode);
-                retrieveItem(currentProductCode);
-            }
-        });
+        String currentBarcode = String.valueOf(currentProductViewModel.getCurrentProductCode());
+
+
+            productArrayViewModel.getSingleProduct(currentBarcode).observe(getViewLifecycleOwner(), new Observer<Product>() {
+                @Override
+                public void onChanged(Product product) {
+                    Log.d("TAG", "onChanged: " + product.getBrand());
+                }
+            });
+
+
+
+
 
         if (getActivity() instanceof MainActivity) {
             mainActivity = (MainActivity) getActivity();
@@ -59,26 +70,12 @@ public class ProductFragment extends Fragment {
                 hideFragment();
             }
         });
-
+        } catch (Exception e) {
+            Log.d("TAG", "onCreateView: " + e.getMessage());
+        }
         return view;
     }
 
-    private void retrieveItem(String code) {
-        try {
-            if (code != null) {
-                Item item = dataArrayViewModel.getSingleItem(code);
-                if (item != null) {
-                    resultTextView.setText(item.getBrand());
-                } else {
-                    resultTextView.setText("Item not found");
-                }
-            } else {
-                resultTextView.setText("");
-            }
-        } catch (Exception e) {
-            Log.d("TAG", "retrieveItem: " + e.getMessage());
-        }
-    }
 
     private void hideFragment() {
         if (mainActivity != null) {

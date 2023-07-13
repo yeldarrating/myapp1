@@ -14,4 +14,7 @@ public interface ProductDao {
 
     @Query("SELECT * FROM product_table ORDER BY id ASC")
     LiveData<List<Product>> getAllProducts();
+
+    @Query("SELECT * FROM product_table WHERE barcode = :barcode")
+    LiveData<Product> getSingleProduct(String barcode);
 }

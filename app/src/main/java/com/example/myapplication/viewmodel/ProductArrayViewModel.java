@@ -24,4 +24,8 @@ public class ProductArrayViewModel extends AndroidViewModel {
     public LiveData<List<Product>> getAllProducts() {
         return allProducts;
     }
+
+    public LiveData<Product> getSingleProduct(String barcode) {
+        return productRepository.getSingleProduct(barcode);
+    }
 }

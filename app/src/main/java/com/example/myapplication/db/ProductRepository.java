@@ -27,6 +27,10 @@ public class ProductRepository {
         return allProducts;
     }
 
+    public LiveData<Product> getSingleProduct(String barcode) {
+        return productDao.getSingleProduct(barcode);
+    }
+
     private static class InsertProductsAsyncTask extends AsyncTask<Product, Void, Void> {
         private ProductDao productDao;
 

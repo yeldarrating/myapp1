@@ -22,6 +22,7 @@ import com.example.myapplication.db.Product;
 import com.example.myapplication.db.ProductDao;
 import com.example.myapplication.db.ProductDatabase;
 import com.example.myapplication.ui.MainActivity;
+import com.example.myapplication.viewmodel.CurrentProductViewModel;
 import com.example.myapplication.viewmodel.ProductArrayViewModel;
 
 import java.util.List;
@@ -29,6 +30,7 @@ import java.util.List;
 public class HistoryFragment extends Fragment {
     private View rootView;
     private ProductArrayViewModel productArrayViewModel;
+    private CurrentProductViewModel currentProductViewModel;
 
     public HistoryFragment() {
         // Required empty public constructor
@@ -47,21 +49,26 @@ public class HistoryFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         productArrayViewModel = new ViewModelProvider(this).get(ProductArrayViewModel.class);
+        currentProductViewModel = new ViewModelProvider(this).get(CurrentProductViewModel.class);
 
-        productArrayViewModel.getAllProducts().observe(getViewLifecycleOwner(), new Observer<List<Product>>() {
-            @Override
-            public void onChanged(List<Product> products) {
-                Toast.makeText(getContext(), "onChanged", Toast.LENGTH_SHORT).show();
-                Log.d("TAG", "onChanged: " + products.size());
+        currentProductViewModel.setCurrentProductCode("4870207313717");
 
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(getContext(), products.get(0).getBarcode(), Toast.LENGTH_SHORT).show();
-                    }
-                }, 1000);
-            }
-        });
+        String currentBarcode = String.valueOf(currentProductViewModel.getCurrentProductCode());
+
+//        productArrayViewModel.getAllProducts().observe(getViewLifecycleOwner(), new Observer<List<Product>>() {
+//            @Override
+//            public void onChanged(List<Product> products) {
+//                Toast.makeText(getContext(), "onChanged", Toast.LENGTH_SHORT).show();
+//                Log.d("TAG", "onChanged: " + products.size());
+//                new Handler().postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        Toast.makeText(getContext(), products.get(0).getBarcode(), Toast.LENGTH_SHORT).show();
+//                    }
+//                }, 1000);
+//            }
+//        });
+
 
         ImageView closeButton = view.findViewById(R.id.close_btn);
         closeButton.setOnClickListener(new View.OnClickListener() {
@@ -72,6 +79,7 @@ public class HistoryFragment extends Fragment {
                 if (activity != null) {
                     activity.hideBottomSheet();
                 }
+
             }
         });
     }
