@@ -5,13 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 
-import com.example.myapplication.viewmodel.DataArrayViewModel;
-import com.example.myapplication.model.Item;
+import com.example.myapplication.db.ProductDatabase;
 import com.example.myapplication.ui.MainActivity;
 
 public class LauncherActivity extends AppCompatActivity {
+    private static ProductDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

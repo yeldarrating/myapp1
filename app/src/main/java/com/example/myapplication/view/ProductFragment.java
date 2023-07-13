@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -20,7 +21,7 @@ import com.example.myapplication.viewmodel.DataArrayViewModel;
 
 public class ProductFragment extends Fragment {
     private TextView resultTextView;
-    private Button closeButton;
+    private ImageView closeButton;
     private MainActivity mainActivity;
     private CurrentProductViewModel currentProductViewModel;
     private DataArrayViewModel dataArrayViewModel;
@@ -32,20 +33,11 @@ public class ProductFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        try {
-            currentProductViewModel = new ViewModelProvider(requireActivity()).get(CurrentProductViewModel.class);
-            dataArrayViewModel = new ViewModelProvider(requireActivity()).get(DataArrayViewModel.class);
-        } catch (Exception e) {
-            Log.d("TAG", "onCreate: " + e.getMessage());
-        }
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_product, container, false);
-        resultTextView = view.findViewById(R.id.res);
 
         currentProductViewModel.getCurrentProductCode().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
