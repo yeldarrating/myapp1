@@ -1,4 +1,4 @@
-package com.example.myapplication.db;
+package com.example.myapplication.db.product;
 
 import android.app.Application;
 import android.os.AsyncTask;

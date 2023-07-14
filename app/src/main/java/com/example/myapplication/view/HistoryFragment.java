@@ -8,24 +8,17 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.example.myapplication.ui.MainActivity;
 import com.example.myapplication.R;
-import com.example.myapplication.db.Product;
-import com.example.myapplication.db.ProductDao;
-import com.example.myapplication.db.ProductDatabase;
-import com.example.myapplication.ui.MainActivity;
+import com.example.myapplication.db.product.Product;
 import com.example.myapplication.viewmodel.CurrentProductViewModel;
 import com.example.myapplication.viewmodel.ProductArrayViewModel;
-
-import java.util.List;
 
 public class HistoryFragment extends Fragment {
     private View rootView;
@@ -53,8 +46,9 @@ public class HistoryFragment extends Fragment {
 
         currentProductViewModel.setCurrentProductCode("4870207313717");
 
-        String currentBarcode = String.valueOf(currentProductViewModel.getCurrentProductCode());
+        String currentBarcode = currentProductViewModel.getCurrentProductCode().getValue();
 
+        Log.d("TAG", "onViewCreated: " + currentBarcode);
 //        productArrayViewModel.getAllProducts().observe(getViewLifecycleOwner(), new Observer<List<Product>>() {
 //            @Override
 //            public void onChanged(List<Product> products) {
@@ -68,6 +62,14 @@ public class HistoryFragment extends Fragment {
 //                }, 1000);
 //            }
 //        });
+
+            productArrayViewModel.getSingleProduct(currentBarcode).observe(getViewLifecycleOwner(), new Observer<Product>() {
+                @Override
+                public void onChanged(Product product) {
+                    Log.d("TAG", "onChanged: " + product.getBrand());
+                }
+            });
+
 
 
         ImageView closeButton = view.findViewById(R.id.close_btn);

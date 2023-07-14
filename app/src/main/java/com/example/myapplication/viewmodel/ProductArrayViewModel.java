@@ -6,8 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import com.example.myapplication.db.Product;
-import com.example.myapplication.db.ProductRepository;
+import com.example.myapplication.db.product.Product;
+import com.example.myapplication.db.product.ProductRepository;
 
 import java.util.List;
 

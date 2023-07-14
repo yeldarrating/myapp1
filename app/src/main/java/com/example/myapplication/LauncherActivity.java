@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-import com.example.myapplication.db.ProductDatabase;
+import com.example.myapplication.db.product.ProductDatabase;
 import com.example.myapplication.ui.MainActivity;
 
 public class LauncherActivity extends AppCompatActivity {
