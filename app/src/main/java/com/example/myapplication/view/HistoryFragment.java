@@ -1,5 +1,6 @@
 package com.example.myapplication.view;
 
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -7,6 +8,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,16 +17,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.example.myapplication.adapter.HistoryAdapter;
+import com.example.myapplication.db.history.History;
 import com.example.myapplication.ui.MainActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.db.product.Product;
 import com.example.myapplication.viewmodel.CurrentProductViewModel;
+import com.example.myapplication.viewmodel.HistoryViewModel;
 import com.example.myapplication.viewmodel.ProductArrayViewModel;
+
+import java.util.List;
 
 public class HistoryFragment extends Fragment {
     private View rootView;
     private ProductArrayViewModel productArrayViewModel;
     private CurrentProductViewModel currentProductViewModel;
+
+    private HistoryAdapter historyAdapter;
+
+    private HistoryViewModel historyViewModel;
 
     public HistoryFragment() {
         // Required empty public constructor
@@ -41,34 +53,36 @@ public class HistoryFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        productArrayViewModel = new ViewModelProvider(this).get(ProductArrayViewModel.class);
-        currentProductViewModel = new ViewModelProvider(this).get(CurrentProductViewModel.class);
+        try {
+            historyViewModel = new ViewModelProvider(this).get(HistoryViewModel.class);
 
-        currentProductViewModel.setCurrentProductCode("4870207313717");
+            historyAdapter = new HistoryAdapter();
 
-        String currentBarcode = currentProductViewModel.getCurrentProductCode().getValue();
+            // Set the adapter for the RecyclerView
+            RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
+            recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+            recyclerView.setAdapter(historyAdapter);
 
-        Log.d("TAG", "onViewCreated: " + currentBarcode);
-//        productArrayViewModel.getAllProducts().observe(getViewLifecycleOwner(), new Observer<List<Product>>() {
-//            @Override
-//            public void onChanged(List<Product> products) {
-//                Toast.makeText(getContext(), "onChanged", Toast.LENGTH_SHORT).show();
-//                Log.d("TAG", "onChanged: " + products.size());
-//                new Handler().postDelayed(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        Toast.makeText(getContext(), products.get(0).getBarcode(), Toast.LENGTH_SHORT).show();
-//                    }
-//                }, 1000);
-//            }
-//        });
-
-            productArrayViewModel.getSingleProduct(currentBarcode).observe(getViewLifecycleOwner(), new Observer<Product>() {
+            historyViewModel.getAllHistory().observe(getViewLifecycleOwner(), new Observer<List<History>>() {
                 @Override
-                public void onChanged(Product product) {
-                    Log.d("TAG", "onChanged: " + product.getBrand());
+                public void onChanged(List<History> histories) {
+                    if (histories.size() > 0) {
+                        historyAdapter.setData(histories);
+                    }
                 }
             });
+        } catch (Exception e) {
+            Log.d("TAG", "onViewCreated: " + e.getMessage());
+        }
+
+//
+//        productArrayViewModel = new ViewModelProvider(this).get(ProductArrayViewModel.class);
+//        currentProductViewModel = new ViewModelProvider(this).get(CurrentProductViewModel.class);
+//
+//        currentProductViewModel.setCurrentProductCode("4870207313717");
+//
+//        String currentBarcode = currentProductViewModel.getCurrentProductCode().getValue();
+//
 
 
 

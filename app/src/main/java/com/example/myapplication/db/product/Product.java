@@ -24,15 +24,36 @@ public class Product {
 
     public String volume;
 
-    public Product(String barcode, String composition, String description, String manufacturer, String brand, String country, String color, String volume) {
-        this.barcode = barcode;
-        this.composition = composition;
-        this.description = description;
-        this.manufacturer = manufacturer;
-        this.brand = brand;
-        this.country = country;
-        this.color = color;
-        this.volume = volume;
+    public String weight;
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public int quantity;
+
+//    public Product(String barcode, String composition, String description, String manufacturer, String brand, String country, String color, String volume, String weight) {
+//        this.barcode = barcode;
+//        this.composition = composition;
+//        this.description = description;
+//        this.manufacturer = manufacturer;
+//        this.brand = brand;
+//        this.country = country;
+//        this.color = color;
+//        this.volume = volume;
+//        this.weight = weight;
+//    }
+
+    public String getWeight() {
+        return weight;
+    }
+
+    public void setWeight(String weight) {
+        this.weight = weight;
     }
 
     public int getId() {

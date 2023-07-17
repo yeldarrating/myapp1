@@ -15,8 +15,8 @@
     <string name="product_brand">Бренд:</string>
     <string name="product_country">Страна:</string>
     <string name="product_color">Цвет флакона / упаковки</string>
-    <string name="product_weight">Вес брутто</string>
-    <string name="product_volume">Объем</string>
-    <string name="product_barcode">Штрихкод</string>
-    <string name="product_bought_quantity">Куплено штук</string>
+    <string name="product_weight">Вес брутто:</string>
+    <string name="product_volume">Объем:</string>
+    <string name="product_barcode">Штрихкод:</string>
+    <string name="product_bought_quantity">Куплено штук:</string>
 </resources>

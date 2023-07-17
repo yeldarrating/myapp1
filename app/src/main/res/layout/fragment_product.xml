@@ -44,6 +44,7 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/code_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -55,7 +56,8 @@
                 android:text="@string/product_code"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:layout_marginBottom="5dp"/>
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/black"/>
             <TextView
                 android:id="@+id/product_code"
                 android:layout_width="match_parent"
@@ -65,6 +67,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/composition_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -76,15 +79,18 @@
                 android:text="@string/product_composition"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:layout_marginBottom="5dp"/>
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/black"/>
             <TextView
                 android:id="@+id/product_composition"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textSize="16sp"/>
+                android:textSize="16sp"
+                android:textColor="@color/black"/>
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/description_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -96,12 +102,14 @@
                 android:text="@string/product_description"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:layout_marginBottom="5dp"/>
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/black"/>
             <TextView
                 android:id="@+id/product_description"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textSize="16sp"/>
+                android:textSize="16sp"
+                android:textColor="@color/black"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -110,6 +118,304 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <LinearLayout
+            android:id="@+id/manufacturer_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <View
+                android:background="#DADADA"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/product_manufacturer"
+                    android:textSize="14sp"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:id="@+id/product_manufacturer"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Ehrmann"
+                    android:textSize="14sp"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:layout_marginRight="15dp"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/brand_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <View
+                android:background="#DADADA"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/product_brand"
+                    android:textSize="14sp"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:id="@+id/product_brand"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Ehrmann"
+                    android:textSize="14sp"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:layout_marginRight="15dp"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/country_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <View
+                android:background="#DADADA"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/product_country"
+                    android:textSize="14sp"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:id="@+id/product_country"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Ehrmann"
+                    android:textSize="14sp"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:layout_marginRight="15dp"
+                    android:textAllCaps="true"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/color_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <View
+                android:background="#DADADA"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/product_color"
+                    android:textSize="14sp"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:id="@+id/product_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Ehrmann"
+                    android:textSize="14sp"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:layout_marginRight="15dp"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/weight_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <View
+                android:background="#DADADA"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/product_weight"
+                    android:textSize="14sp"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:id="@+id/product_weight"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Ehrmann"
+                    android:textSize="14sp"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:layout_marginRight="15dp"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/volume_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <View
+                android:background="#DADADA"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/product_volume"
+                    android:textSize="14sp"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:id="@+id/product_volume"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Ehrmann"
+                    android:textSize="14sp"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:layout_marginRight="15dp"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/barcode_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <View
+                android:background="#DADADA"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/product_code"
+                    android:textSize="14sp"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:id="@+id/product_barcode"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Ehrmann"
+                    android:textSize="14sp"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:layout_marginRight="15dp"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:id="@+id/quantity_layout">
+
+            <View
+                android:background="#DADADA"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/product_bought_quantity"
+                    android:textSize="14sp"
+                    android:layout_weight="1"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/product_quantity"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Ehrmann"
+                    android:textSize="14sp"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:layout_marginRight="15dp"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

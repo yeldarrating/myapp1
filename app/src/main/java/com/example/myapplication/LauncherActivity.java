@@ -17,6 +17,10 @@ public class LauncherActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launcher);
 
+        launchMainActivity();
+    }
+
+    private void launchMainActivity() {
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -24,7 +28,7 @@ public class LauncherActivity extends AppCompatActivity {
                 Intent intent = new Intent(LauncherActivity.this, MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
-//                finish();
+                finish();
             }
         }, 5000);
     }

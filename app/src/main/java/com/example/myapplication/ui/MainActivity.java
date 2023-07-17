@@ -31,7 +31,10 @@ import com.example.myapplication.viewmodel.CurrentProductViewModel;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.zxing.Result;
 
-public class MainActivity extends AppCompatActivity {
+import gun0912.tedbottompicker.TedBottomPicker;
+import gun0912.tedbottompicker.TedBottomSheetDialogFragment;
+
+public class MainActivity extends AppCompatActivity implements GalleryFragment.OnActivityResultListener {
     private CodeScanner codeScanner;
     private HistoryFragment historyFragment;
     private ProductFragment productFragment;
@@ -131,6 +134,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 galleryFragment = new GalleryFragment();
+                galleryFragment.setOnActivityResultListener(MainActivity.this);
 
                 if (bottomSheetView.getVisibility() != View.VISIBLE) {
                     bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
@@ -154,10 +158,6 @@ public class MainActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Log.d("TAG", "run: " + result.getText());
-
-                        Toast.makeText(MainActivity.this, result.getText(), Toast.LENGTH_SHORT).show();
-
                         currentProductViewModel.setCurrentProductCode(result.getText());
                         productFragment = new ProductFragment();
 
@@ -253,5 +253,22 @@ public class MainActivity extends AppCompatActivity {
     public void hideBottomSheet() {
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
         bottomSheetView.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void onGalleryActivityResult(String imageUri) {
+
+        currentProductViewModel.setCurrentProductCode(imageUri);
+        productFragment = new ProductFragment();
+
+
+        if (bottomSheetView.getVisibility() != View.VISIBLE) {
+            bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+        }
+
+        bottomSheetView.setVisibility(View.VISIBLE);
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.container_bottom, productFragment);
+        ft.commitAllowingStateLoss();
     }
 }
