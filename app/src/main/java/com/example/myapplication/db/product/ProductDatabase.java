@@ -79,6 +79,62 @@ public abstract class ProductDatabase extends RoomDatabase {
             product2.setWeight("0,9 л");
             productDao.insertProduct(product2);
 
+            Product product3 = new Product();
+            product3.setBarcode("4870055002696");
+            product3.setComposition("Молоко нормализованное, витамин D3.");
+            product3.setDescription("Молоко питьевое ультрапастеризованное «Lactel», обогащенное витамином D3, массовая доля жира 3,2%.\nДля детского питания, для детей с 6 лет и старше.\n" +
+                    "Питательная (пищевая) ценность на 100 г продукта: Жир 3,2 г., Белок 2,8 г., Углеводы 4,5 г., Витамин D3 0,5 мкг*., Калорийность 58 ккал., Энергетическая ценность 242 кДж.\n");
+            product3.setManufacturer("АО «Компания ФудМастер»");
+            product3.setBrand("Lactel");
+            product3.setCountry("Казахстан");
+            product3.setColor("синий");
+            product3.setWeight("1 мл");
+            productDao.insertProduct(product3);
+
+            Product product4 = new Product();
+            product4.setBarcode("4870003431660");
+            product4.setComposition("Цельное молоко, обезжиренное молоко.");
+            product4.setDescription("Питьевое молоко ультрапастеризованное изготовленное из фермерского молока.  Массовая доля жира 3,2%. Пищевая ценность в 100 г продукта: Белки 2,8г., Углеводы 4,7г., Жиры 3,2г. Энергетическая ценность не менее 58,8 ккал/246,2 кДж.");
+            product4.setManufacturer("ТОО «Raimbek Agro»");
+            product4.setBrand("Айналайын");
+            product4.setCountry("Казахстан");
+            product4.setColor("синий");
+            product4.setWeight("1 л");
+            productDao.insertProduct(product4);
+
+            Product product5 = new Product();
+            product5.setBarcode("4870206414996");
+            product5.setComposition("Нормализованное молоко, восстановленное молоко из сухого молока, наполнитель (вода, персик, сахар, кукурузный крахмал, ароматизатор натуральным, лимонный сок концентрированный, загуститель - пектины, краситель - каротины), сахар, йогуртовая закваска, бифидобактерия ActiRegularis.");
+            product5.setDescription("Биойогурт «Активиа питьевая», обогащенный бифидобактериями ActiRegularis, с персиком. Пищевая ценность на 100 г : Белки - 2,8г., Жиры – 2,1 г., Углеводы 11 г. в тч. сахароза – 6,5 г., энергетическая ценность/калорийность - 312 кДж/74 ккал.");
+            product5.setManufacturer("ТОО «Danone Bertal»");
+            product5.setBrand("АКТИВИА");
+            product5.setCountry("Казахстан");
+            product5.setColor("синий");
+            product5.setWeight("1 л");
+            productDao.insertProduct(product5);
+
+            Product product6 = new Product();
+            product6.setBarcode("4870004063945");
+            product6.setComposition("Нормализованное молоко, сухое цельное молоко, сухое обезжиренное молоко, закваски с бифидобактериями и бактериями болгарской палочки, сахар, фруктово-ягодный наполнитель клубника (сахар, загуститель пектин, крахмал, регулятор кислотности лимонная кислота, красители натуральные, пищевой ароматизатор).\n");
+            product6.setDescription("Биойогурт питьевой с клубникой без растительных жиров, массовая доля жира 1,5%.  Пищевая ценность в 100 г : Жир 1,5 г., Белок 2,8 г., Углеводы 11 г. в т.ч. сахароза 6,5г., Энергетическая ценность (калорийность): 289 кДж/69 ккал.\n" +
+                    "Мы получаем молоко на первой в Средней Азии роботизированной ферме. Сохраняем полезные для организма кальций, витамин А и витамины группы В. Используем только современные технологии переработки и упаковки.\n");
+            product6.setManufacturer("ТОО «Восток-Молоко»");
+            product6.setBrand("Восток-Молоко");
+            product6.setCountry("Казахстан");
+            product6.setColor("красный");
+            product6.setWeight("450 мл");
+            productDao.insertProduct(product6);
+
+            Product product7 = new Product();
+            product4.setBarcode("4870003431660");
+            product4.setComposition("Цельное молоко, обезжиренное молоко.");
+            product4.setDescription("");
+            product4.setManufacturer("ТОО «Raimbek Agro»");
+            product4.setBrand("Айналайын");
+            product4.setCountry("Казахстан");
+            product4.setColor("синий");
+            product4.setWeight("1 л");
+            productDao.insertProduct(product4);
 
 
             return null;

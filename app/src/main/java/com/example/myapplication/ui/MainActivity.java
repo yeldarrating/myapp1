@@ -144,6 +144,15 @@ public class MainActivity extends AppCompatActivity implements GalleryFragment.O
                 FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                 ft.replace(R.id.container_bottom, galleryFragment);
                 ft.commitAllowingStateLoss();
+
+//                TedBottomPicker.with(MainActivity.this)
+//                        .show(new TedBottomSheetDialogFragment.OnImageSelectedListener() {
+//                            @Override
+//                            public void onImageSelected(Uri uri) {
+//                                // here is selected image uri
+//                                Toast.makeText(MainActivity.this, uri.toString(), Toast.LENGTH_SHORT).show();
+//                            }
+//                        });
             }
         });
     }
